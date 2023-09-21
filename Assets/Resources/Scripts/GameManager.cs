@@ -16,15 +16,20 @@ public class GameManager : MonoBehaviour
 
     public GameObject blockPrefab;
 
+    public bool isDown;
 
-    Vector3 spawnPos = new Vector3(0, 2f, 0);
+
+    public Transform SpawnPos;
+    Vector3 spawnPos;
 
     //=================<      블럭 스폰         >=====================
     public void BlockSpawn()
     {
+        
         var blockGO = ObjectPoolManager.Instance.Pool.Get();
         blockGO.transform.position = spawnPos;
     }
+
 
 
     private void Awake()
@@ -42,7 +47,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        spawnPos = SpawnPos.transform.position;
+
         BlockSpawn();
+        
     }
 
     void Update()
