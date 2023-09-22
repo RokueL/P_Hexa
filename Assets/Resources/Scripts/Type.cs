@@ -4,9 +4,11 @@ using UnityEngine;
 
 public enum Type
 {
-    Diamond,
+    Amethyst,
     Ruby,
-    Emerald
+    Emerald,
+    Sapphire,
+    Topaz
 }
 
 [System.Serializable]

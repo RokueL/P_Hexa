@@ -9,12 +9,12 @@ public class Block : MonoBehaviour
 {
     public IObjectPool<GameObject> Pool { get; set; }
 
-    [SerializeField]tiles[] tile = new tiles[3];
+    public tiles[] tile = new tiles[3];
 
     float curTime;
     Vector3 rayPos;
     public bool isBlock;
-    bool isMoveNo;
+    public bool isMoveNo;
 
     void Start()
     {
@@ -37,25 +37,26 @@ public class Block : MonoBehaviour
         }
     }
 
+
     //=================< 옆 체크 후 이동         >=====================
     void move()
     {
-        if (Input.GetKeyDown(KeyCode.A) && !isBlock)
-        {
-            moveCheck("A");
-            if (!isMoveNo)
-            {
-                transform.position += new Vector3(-0.5f, 0, 0f);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.D) && !isBlock)
-        {
-            moveCheck("D");
-            if (!isMoveNo)
-            {
-                transform.position += new Vector3(0.5f, 0f, 0f);
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.A) && !isBlock)
+        //{
+        //    moveCheck("A");
+        //    if (!isMoveNo)
+        //    {
+        //        transform.position += new Vector3(-0.5f, 0, 0f);
+        //    }
+        //}
+        //else if (Input.GetKeyDown(KeyCode.D) && !isBlock)
+        //{
+        //    moveCheck("D");
+        //    if (!isMoveNo)
+        //    {
+        //        transform.position += new Vector3(0.5f, 0f, 0f);
+        //    }
+        //}
         if(Input.GetKeyDown(KeyCode.S) && !isBlock)
         {
             Time.timeScale = 4f;
@@ -66,7 +67,7 @@ public class Block : MonoBehaviour
         }
     }
     //=================< 옆 체킹 호출         >=====================
-    void moveCheck(string key)
+    public void moveCheck(string key)
     {
         for(int i = 0; i < tile.Length; i++)
         {

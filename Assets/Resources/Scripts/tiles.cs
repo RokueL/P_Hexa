@@ -70,10 +70,10 @@ public class tiles : MonoBehaviour
                 }
                 if(count <= 3)
                 {
-                    //for(int k = 0; k<crashGO.Length; k++)
-                    //{
-                    //    crashGO[k] = null;
-                    //}
+                    for(int k = 0; k<crashGO.Length; k++)
+                    {
+                        crashGO[k] = null;
+                    }
                     count = 0;
                 }
             }
@@ -132,10 +132,13 @@ public class tiles : MonoBehaviour
     //=================<        블럭 없애기         >=====================
     void DestroyBlock()
     {
-        for(int i = 0; i< crashGO.Length; i++)
+        for (int i = 0; i < crashGO.Length; i++)
         {
-            crashGO[i].SetActive(false);
-
+            if (crashGO[i] != null && crashGO[i].activeSelf)
+            {
+                crashGO[i].SetActive(false);
+                crashGO[i] = null;
+            }
         }
     }
 
@@ -194,6 +197,11 @@ public class tiles : MonoBehaviour
         {
             isStack = true;
             isDownEmpty = true;
+            if(transform.position.y > 3f)
+            {
+
+                return;
+            }
             FirstChecking();
         }
     }
@@ -204,7 +212,7 @@ public class tiles : MonoBehaviour
     {
         count = 0;
         sp = this.gameObject.GetComponent<SpriteRenderer>();
-        myValue = Random.Range(0, 3);
+        myValue = Random.Range(0, 5);
     }
 
     public void downMoveCheck()
@@ -224,6 +232,12 @@ public class tiles : MonoBehaviour
                 break;
             case 2:
                 this.sp.sprite = GameManager.Instance.typeSprite[2].sprite;
+                break;
+            case 3:
+                this.sp.sprite = GameManager.Instance.typeSprite[3].sprite;
+                break;
+            case 4:
+                this.sp.sprite = GameManager.Instance.typeSprite[4].sprite;
                 break;
         }
     }
