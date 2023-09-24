@@ -15,6 +15,7 @@ public class Block : MonoBehaviour
     Vector3 rayPos;
     public bool isBlock;
     public bool isMoveNo;
+    public bool isStay;
 
     void Start()
     {
@@ -39,32 +40,8 @@ public class Block : MonoBehaviour
 
 
     //=================< ¿· Ã¼Å© ÈÄ ÀÌµ¿         >=====================
-    void move()
+    void SideMove()
     {
-        //if (Input.GetKeyDown(KeyCode.A) && !isBlock)
-        //{
-        //    moveCheck("A");
-        //    if (!isMoveNo)
-        //    {
-        //        transform.position += new Vector3(-0.5f, 0, 0f);
-        //    }
-        //}
-        //else if (Input.GetKeyDown(KeyCode.D) && !isBlock)
-        //{
-        //    moveCheck("D");
-        //    if (!isMoveNo)
-        //    {
-        //        transform.position += new Vector3(0.5f, 0f, 0f);
-        //    }
-        //}
-        if(Input.GetKeyDown(KeyCode.S) && !isBlock)
-        {
-            Time.timeScale = 4f;
-        }
-        else if(Input.GetKeyUp(KeyCode.S) && !isBlock)
-        {
-            Time.timeScale = 1f;
-        }
     }
     //=================< ¿· Ã¼Å· È£Ãâ         >=====================
     public void moveCheck(string key)
@@ -110,7 +87,7 @@ public class Block : MonoBehaviour
     void Update()
     {
         swap();
-        move();
+        SideMove();
         //=================< ÂøÁö         >=====================
         if(isBlock)
         {
@@ -121,9 +98,20 @@ public class Block : MonoBehaviour
 
         }
     }
+
+    private void LateUpdate()
+    {
+        if (isStay)
+        {
+            downCheck();
+        }
+    }
     private void FixedUpdate()
     {
-        downCheck();
+        //if (isStay)
+        //{
+        //    downCheck();
+        //}
         //=================< Debug Ray         >=====================
         //Debug.DrawRay(rayPos, Vector2.down * 0.5f, new Color(1, 0, 0));
     }

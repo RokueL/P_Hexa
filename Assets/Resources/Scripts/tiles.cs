@@ -95,6 +95,7 @@ public class tiles : MonoBehaviour
                 backChecking(dir);
                 if (count >= 3)
                 {
+                    ScoreManager.Instance.scoreUp(count);
                     DestroyBlock();
                 }
                 break;
@@ -197,9 +198,10 @@ public class tiles : MonoBehaviour
         {
             isStack = true;
             isDownEmpty = true;
-            if(transform.position.y > 3f)
+            if(transform.position.y > 3.5f)
             {
-
+                Debug.Log("Game End");
+                GameManager.Instance.state = GameManager.State.GameEnd;
                 return;
             }
             FirstChecking();
